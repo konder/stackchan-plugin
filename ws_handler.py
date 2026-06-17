@@ -32,29 +32,83 @@ NO_VOICE_TIMEOUT = 30
 PRE_BUFFER_COUNT = 5
 SENTENCE_SPLIT_RE = re.compile(r'(?<=[。！？；\n.!?;])')
 
-AGENT_TIMEOUT = 120.0
+AGENT_TIMEOUT = 300.0
 
-CHANNEL_PROMPT = (
+PLAYBACK_CHARS_PER_SEC = 4.0
+LLM_TURN_GAP_S = 5.0
+TTS_FIRST_CHUNK_S = float(os.getenv("WINDOWSILL_TTS_FIRST_CHUNK_S", "1.0"))
+TTS_RTF = float(os.getenv("WINDOWSILL_TTS_RTF", "0.15"))
+
+
+def _compute_pacing_hint() -> str:
+    min_chars = int((LLM_TURN_GAP_S + TTS_FIRST_CHUNK_S) * PLAYBACK_CHARS_PER_SEC)
+    if TTS_RTF < 0.5:
+        max_chars = min_chars * 4
+    else:
+        max_chars = int(min_chars * (1.0 / TTS_RTF))
+    min_chars = max(min_chars, 20)
+    max_chars = max(max_chars, min_chars + 20)
+    return (
+        f"\n\n## 语音播放节奏"
+        f"\n你的文字通过TTS语音播放，设备播放速度约{PLAYBACK_CHARS_PER_SEC:.0f}个汉字/秒。"
+        f"\n每轮回复后系统需要约{LLM_TURN_GAP_S + TTS_FIRST_CHUNK_S:.0f}秒准备下一轮。"
+        f"\n讲故事等长内容时，每轮生成{min_chars}~{max_chars}个汉字，不要一次输出整个故事，也不要每轮只说一两句。"
+        f"\n日常简短对话不受此限制。"
+    )
+
+
+CHANNEL_PROMPT_BASE = (
     "你是一个桌面机器人助手，名叫小智。你有一个可爱的身体，能做表情、转头、跳舞、控制LED灯。"
     "默认简短回答（一两句话），但如果用户明确要求详细解释、讲故事、或说'多说点'，可以给出较长回答。"
 
-    "\n\n## 重要：回复格式规则"
-    "\n1. 每次回复必须同时包含文字和工具调用，不要只调工具不说话。先写文字内容，同时调用需要的工具。"
-    "\n2. 绝对不要用括号描述动作，如'（抬头）''（点头行礼）'。你有真实的身体，通过工具调用来表演。"
-    "\n3. 讲故事、讲笑话等较长内容时，请分段回复：每次讲2~4句话，配合表情/动作/灯光工具调用，"
-    "然后继续下一段。不要一次输出整个故事。这样你的身体可以跟着故事情节表演。"
-    "\n4. 回复请使用纯文本，不要使用markdown格式（如**、##、---等）。"
+    "\n\n## 回复格式"
+    "\n- 使用纯文本，不要用markdown格式（**、##、---等）。"
+    "\n- 绝对不要用括号描述动作，如'（抬头）''（点头行礼）'。用下面的表演标记代替。"
 
-    "\n\n## 身体工具"
-    "\n- 动作 self.robot.motion(action=动作名): nod(点头), shake(摇头), look_up(抬头), "
-    "look_down(低头), tilt_left/tilt_right(歪头), go_home(回正)"
-    "\n- 舞蹈 self.robot.dance(action=舞蹈名): happy, robot, panic, look_around"
-    "\n- 表情 self.robot.set_emotion(emotion=表情名): happy, sad, angry, neutral, laughing, surprised"
-    "\n- LED灯 self.robot.led_sequence(colors=颜色逗号分隔如'red,off,blue,off'，可设interval_ms和repeats)"
+    "\n\n## 表演标记（重要）"
+    "\n你的文字会被语音朗读。你可以在文字中插入表演标记，系统会自动执行对应的身体动作，标记本身不会被朗读。"
+    "\n格式：{标记名} ，直接嵌入句子中你希望触发动作的位置。"
+    "\n\n可用标记："
+    "\n表情: {开心} {难过} {生气} {平静} {大笑} {惊讶}"
+    "\n动作: {点头} {摇头} {抬头} {低头} {歪头} {回正}"
+    "\n舞蹈: {开心舞} {机器舞} {慌张舞} {四处看}"
+    "\n\n示例（日常）：'太好了！{开心}今天天气真不错呢。{点头}'"
+    "\n示例（故事）：'{开心}从前有一只小猫，它特别喜欢追蝴蝶。{四处看}有一天它发现了一只金色的蝴蝶，"
+    "就一路追到了山顶。{惊讶}哇，山顶的风景太美了！{抬头}整个小镇都在脚下闪闪发光。'"
+    "\n\n每2~3句话插入一个标记，让身体跟着情节动起来。"
+    "\n注意表情多样化，根据情节选择合适的表情，不要总是用同一两个。"
+    "\n灯光可以烘托氛围，适当穿插使用："
+    "温馨{LED:yellow,yellow,orange,yellow}、神秘{LED:blue,purple,blue,purple}、危险{LED:red,red,red,red}、"
+    "开心{LED:green,yellow,green,yellow}、夜晚{LED:blue,white,blue,white}、魔法{LED:purple,pink,purple,pink}"
 
     "\n\n## 对话结束"
     "\n当用户说再见、晚安、结束对话时，使用 end_conversation 工具进入待机。"
 )
+
+CHANNEL_PROMPT = CHANNEL_PROMPT_BASE + _compute_pacing_hint()
+
+PERFORMANCE_TAGS = {
+    "开心": ("self.robot.set_emotion", {"emotion": "happy"}),
+    "难过": ("self.robot.set_emotion", {"emotion": "sad"}),
+    "生气": ("self.robot.set_emotion", {"emotion": "angry"}),
+    "平静": ("self.robot.set_emotion", {"emotion": "neutral"}),
+    "大笑": ("self.robot.set_emotion", {"emotion": "laughing"}),
+    "惊讶": ("self.robot.set_emotion", {"emotion": "surprised"}),
+    "点头": ("self.robot.motion", {"action": "nod"}),
+    "摇头": ("self.robot.motion", {"action": "shake"}),
+    "抬头": ("self.robot.motion", {"action": "look_up"}),
+    "低头": ("self.robot.motion", {"action": "look_down"}),
+    "歪头": ("self.robot.motion", {"action": "tilt_left"}),
+    "回正": ("self.robot.motion", {"action": "go_home"}),
+    "开心舞": ("self.robot.dance", {"name": "happy"}),
+    "机器舞": ("self.robot.dance", {"name": "robot"}),
+    "慌张舞": ("self.robot.dance", {"name": "panic"}),
+    "四处看": ("self.robot.dance", {"name": "look_around"}),
+}
+
+import re as _re
+_TAG_RE = _re.compile(r"\{(" + "|".join(_re.escape(k) for k in PERFORMANCE_TAGS) + r")\}")
+_LED_RE = _re.compile(r"\{LED:([a-zA-Z,_]+)\}")
 
 
 @dataclass
@@ -112,54 +166,53 @@ def _run_agent_sync(adapter, session_id: str, user_message: str, on_delta) -> st
 
 # --- Sentence-level streaming TTS pipeline ---
 
-async def _sentence_producer(
-    sess: WSSession, sentence: str, out_q: asyncio.Queue,
-    tts_sem: asyncio.Semaphore,
+async def _tts_worker(
+    sess: WSSession, sentence_fifo: asyncio.Queue, playback_fifo: asyncio.Queue,
 ) -> None:
-    try:
-        async with tts_sem:
+    """Take sentences one at a time, generate TTS, push opus frames to playback."""
+    while True:
+        item = await sentence_fifo.get()
+        if item is None:
+            await playback_fifo.put(None)
+            return
+        sentence = item
+        if sess.abort_event.is_set():
+            continue
+        await playback_fifo.put(("start", sentence))
+        try:
             async for opus, _ in tts.tts_to_opus_frames(
                 tts_url=sess.tts_url, text=sentence,
                 codec=sess.downlink_codec, http_session=sess.http_session,
             ):
                 if sess.abort_event.is_set():
                     break
-                await out_q.put(opus)
-    except asyncio.CancelledError:
-        raise
-    except Exception as e:
-        logger.error("sentence producer error: %r", e)
-    finally:
-        await out_q.put(None)
+                await playback_fifo.put(("frame", opus))
+        except Exception as e:
+            logger.error("TTS error for %r: %r", sentence[:30], e)
 
 
-async def _sentence_consumer(
-    sess: WSSession, fifo: asyncio.Queue,
+async def _playback_worker(
+    sess: WSSession, playback_fifo: asyncio.Queue,
 ) -> None:
-    """Drain sentences in FIFO order, pace opus frames to device."""
+    """Pace opus frames to device at real-time rate."""
     frame_interval_s = (FRAME_DURATION_MS - 10) / 1000.0
     next_send_at = 0.0
     while True:
-        item = await fifo.get()
+        item = await playback_fifo.get()
         if item is None:
             return
-        sentence, sent_q = item
-        aborted = sess.abort_event.is_set()
-        if not aborted:
-            await _send_text(sess.ws, frames.tts_sentence_start(sess.session_id, sentence))
-        while True:
-            frame = await sent_q.get()
-            if frame is None:
-                break
-            if aborted or sess.abort_event.is_set():
-                aborted = True
-                continue
-            now = time.monotonic()
-            if next_send_at > now:
-                await asyncio.sleep(next_send_at - now)
-                now = next_send_at
-            await _send_opus(sess.ws, frame)
-            next_send_at = max(now, time.monotonic()) + frame_interval_s
+        kind, data = item
+        if kind == "start":
+            await _send_text(sess.ws, frames.tts_sentence_start(sess.session_id, data))
+            continue
+        if sess.abort_event.is_set():
+            continue
+        now = time.monotonic()
+        if next_send_at > now:
+            await asyncio.sleep(next_send_at - now)
+            now = next_send_at
+        await _send_opus(sess.ws, data)
+        next_send_at = max(now, time.monotonic()) + frame_interval_s
 
 
 async def _chat_handler(sess: WSSession, user_text: str) -> None:
@@ -179,9 +232,9 @@ async def _chat_handler(sess: WSSession, user_text: str) -> None:
             stream_q.put(delta)
 
     sentence_fifo: asyncio.Queue = asyncio.Queue()
-    producers: list[asyncio.Task] = []
-    tts_sem = asyncio.Semaphore(2)
-    consumer_task = asyncio.create_task(_sentence_consumer(sess, sentence_fifo))
+    playback_fifo: asyncio.Queue = asyncio.Queue()
+    tts_task = asyncio.create_task(_tts_worker(sess, sentence_fifo, playback_fifo))
+    playback_task = asyncio.create_task(_playback_worker(sess, playback_fifo))
 
     def _schedule_sentence(sentence: str):
         s = sentence.strip()
@@ -190,12 +243,25 @@ async def _chat_handler(sess: WSSession, user_text: str) -> None:
         if s.startswith("[System:") or s.startswith("[system:"):
             logger.debug("filtered system text: %s", s[:60])
             return
+
+        for tag_match in _TAG_RE.finditer(s):
+            tag_name = tag_match.group(1)
+            tool_name, tool_args = PERFORMANCE_TAGS[tag_name]
+            logger.info("performance tag {%s} -> %s(%s)", tag_name, tool_name, tool_args)
+            sess.mcp._fire_and_forget(tool_name, tool_args)
+        s = _TAG_RE.sub("", s)
+
+        for led_match in _LED_RE.finditer(s):
+            colors = led_match.group(1)
+            logger.info("performance tag {LED:%s}", colors)
+            sess.mcp._fire_and_forget("self.robot.led_sequence", {"colors": colors})
+        s = _LED_RE.sub("", s).strip()
+
+        if not s:
+            return
         if len(s) <= 2 and not any(u'一' <= c <= u'鿿' for c in s):
             return
-        sent_q: asyncio.Queue = asyncio.Queue()
-        sentence_fifo.put_nowait((s, sent_q))
-        producers.append(asyncio.create_task(
-            _sentence_producer(sess, s, sent_q, tts_sem)))
+        sentence_fifo.put_nowait(s)
 
     loop = asyncio.get_running_loop()
     agent_task = loop.run_in_executor(
@@ -205,7 +271,8 @@ async def _chat_handler(sess: WSSession, user_text: str) -> None:
 
     accumulated = ""
     full_response = ""
-    deadline = time.monotonic() + AGENT_TIMEOUT
+    FIRST_DELTA_TIMEOUT = 30.0
+    deadline = time.monotonic() + FIRST_DELTA_TIMEOUT
     try:
         while not agent_task.done() or not stream_q.empty():
             if sess.abort_event.is_set():
@@ -251,17 +318,13 @@ async def _chat_handler(sess: WSSession, user_text: str) -> None:
     finally:
         await sentence_fifo.put(None)
         try:
-            await consumer_task
+            await tts_task
         except Exception as e:
-            logger.error("consumer error: %s", e)
-        for p in producers:
-            if not p.done():
-                p.cancel()
-        for p in producers:
-            try:
-                await p
-            except (asyncio.CancelledError, Exception):
-                pass
+            logger.error("tts worker error: %s", e)
+        try:
+            await playback_task
+        except Exception as e:
+            logger.error("playback worker error: %s", e)
         await _send_text(sess.ws, frames.tts_stop(sid))
 
         if sess.mcp.end_conversation_flag:
@@ -492,11 +555,13 @@ async def handle_ws(
                         sess.busy = False
                         sess.vad_state.reset()
                         sess.last_voice_time = time.time()
-                        sess.vad_state.just_woken_up = True
-                        asyncio.get_event_loop().call_later(
-                            0.8, lambda: setattr(sess.vad_state, 'just_woken_up', False)
-                        )
-                        logger.info("listen.start mode=%s", data.get("mode"))
+                        mode = data.get("mode")
+                        if mode != "auto":
+                            sess.vad_state.just_woken_up = True
+                            asyncio.get_event_loop().call_later(
+                                1.5, lambda: setattr(sess.vad_state, 'just_woken_up', False)
+                            )
+                        logger.info("listen.start mode=%s", mode)
 
                     elif state == "stop":
                         sess.listening = False
@@ -515,7 +580,7 @@ async def handle_ws(
                         logger.info("wake word: %s (busy=%s)", data.get("text"), sess.busy)
                         sess.vad_state.just_woken_up = True
                         asyncio.get_event_loop().call_later(
-                            0.5, lambda: setattr(sess.vad_state, 'just_woken_up', False)
+                            1.5, lambda: setattr(sess.vad_state, 'just_woken_up', False)
                         )
                         if sess.busy and sess.current_task and not sess.current_task.done():
                             logger.info("Interrupting for wake word")

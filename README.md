@@ -49,7 +49,8 @@ Bridges the StackChan device (running xiaozhi-protocol firmware) to [Hermes](htt
 - **AIAgent per turn**: Each voice turn constructs a fresh AIAgent (Cardputer pattern). Session continuity is maintained through `session_db` + `conversation_history`.
 - **Thread-safe bridge**: AIAgent's `run_conversation()` runs on a thread executor. A `queue.Queue` bridges streaming deltas to the async event loop. Device tool handlers use `asyncio.run_coroutine_threadsafe()`.
 - **Fire-and-forget tools**: `set_emotion`, `motion`, `led_sequence`, `dance` return `"true"` immediately without waiting for device response. This prevents tool execution from blocking the agent's LLM loop.
-- **Sentence-level TTS streaming**: Text is split on sentence boundaries (`。！？；.!?;`) and each sentence is TTS'd concurrently (Semaphore=2). A FIFO consumer paces opus frames to the device at real-time rate.
+- **3-stage pipeline**: LLM generates sentences → `sentence_fifo` → `_tts_worker` (serial TTS) → `playback_fifo` → `_playback_worker` (real-time opus pacing). TTS generation of sentence N+1 overlaps with playback of sentence N, eliminating inter-sentence gaps.
+- **Performance tags**: LLM embeds inline tags like `{开心}`, `{LED:blue,white,blue,white}` in text. Tags are parsed, executed as fire-and-forget MCP calls, and stripped before TTS — no tool-call round-trip needed.
 - **Dynamic ToolRegistry**: Device MCP tools are registered into Hermes `ToolRegistry` on WS connect and deregistered on disconnect, via a custom toolset `windowsill-device`.
 
 ## Prerequisites
@@ -146,6 +147,8 @@ hermes gateway
 | `WINDOWSILL_SERVER_IP` | `192.168.101.131` | Public IP for image proxy |
 | `WINDOWSILL_PUBLIC_HOST` | (auto-detect) | Advertised host in OTA response |
 | `WINDOWSILL_MODEL` | (global default) | LLM model override |
+| `WINDOWSILL_TTS_FIRST_CHUNK_S` | `1.0` | Expected TTS first-chunk latency (for pacing hints) |
+| `WINDOWSILL_TTS_RTF` | `0.15` | Expected TTS real-time factor (for pacing hints) |
 
 Config in `config.yaml` under `platforms.windowsill.extra` takes precedence over defaults but is overridden by env vars.
 
@@ -154,11 +157,12 @@ Config in `config.yaml` under `platforms.windowsill.extra` takes precedence over
 ```
 ├── __init__.py          # Plugin entry point (register)
 ├── adapter.py           # Hermes BasePlatformAdapter, AIAgent construction
-├── ws_handler.py        # WebSocket handler, streaming drain loop, TTS pipeline
+├── ws_handler.py        # WebSocket handler, 3-stage pipeline, performance tags
 ├── mcp_bridge.py        # Device MCP tool bridge + Hermes ToolRegistry integration
 ├── frames.py            # Xiaozhi protocol frame builders
 ├── ota.py               # OTA endpoint (device boot handshake)
 ├── vad.py               # Silero VAD wrapper
+├── cosyvoice_server.py  # CosyVoice2-MLX TTS server (OpenAI-compatible)
 ├── audio/
 │   ├── opus_codec.py    # Opus encode/decode (16kHz uplink, 24kHz downlink)
 │   ├── stt.py           # mlx-whisper STT
@@ -191,19 +195,39 @@ The plugin expects an OpenAI-compatible TTS endpoint that:
 - Supports chunked transfer encoding for streaming
 
 Tested with:
+- **CosyVoice2-MLX** (recommended) — zero-shot voice cloning, RTF ~0.6 on Apple Silicon with 5s reference audio
 - **Qwen3-TTS** (local, via OpenAI-compatible wrapper)
 - Any OpenAI TTS API compatible service
+
+### CosyVoice2-MLX TTS Server
+
+This repo includes `cosyvoice_server.py`, an OpenAI-compatible TTS server powered by [CosyVoice2](https://github.com/FunAudioLLM/CosyVoice) via MLX. It supports zero-shot voice cloning from a short reference audio clip.
+
+```bash
+# Install dependencies
+pip install mlx-audio librosa aiohttp numpy
+
+# Run with custom voice (5s WAV recommended for speed/quality balance)
+python cosyvoice_server.py --port 8082 --ref-audio /path/to/your_voice.wav
+```
+
+The model (`mlx-community/CosyVoice2-0.5B-4bit`) is downloaded automatically on first run. A `threading.Lock` ensures thread-safe access for concurrent requests.
+
+Reference audio tips:
+- **5 seconds** is the sweet spot (RTF ~0.6). Longer clips increase latency significantly (15s → RTF ~2.8).
+- Record in a quiet environment. 24kHz mono WAV works best.
+- Content should be natural speech with varied intonation.
 
 ## Troubleshooting
 
 **Device connects but ASR returns garbage (e.g. "字幕by索兰娅")**
-- Wake word audio bleeding into ASR. The plugin drops 0.8s of audio after `listen.start`, but if the wake word is long, increase the delay in `ws_handler.py` (`call_later(0.8, ...)`).
+- Wake word audio bleeding into ASR. The plugin drops 1.5s of audio after wake word detection and non-auto `listen.start`. In `mode=auto` (conversation continuation), no audio is dropped.
 
-**Motion tools fail with "Missing valid argument: action"**
-- The LLM is sending wrong parameter names. Check `CHANNEL_PROMPT` in `ws_handler.py` — it must explicitly state `self.robot.motion(action=动作名)`.
+**Motion/dance tools fail with "Missing valid argument"**
+- Performance tags now handle motion/dance/emotion/LED inline. If using direct tool calls, ensure parameter names match: `motion(action=...)`, `dance(name=...)`, `set_emotion(emotion=...)`.
 
-**Story never finishes (no tts_stop)**
-- Agent may be stuck in tool call loop. Check `AGENT_TIMEOUT` (default 120s) in `ws_handler.py`. Review gateway logs for repeated tool errors.
+**Device stuck on green light after speaking**
+- LLM may be hanging with no output. A 30s first-delta timeout (`FIRST_DELTA_TIMEOUT`) catches this. After the first delta, `AGENT_TIMEOUT` (300s) applies between subsequent deltas.
 
 **"[System: ..." text being spoken**
 - The `_schedule_sentence` filter in `ws_handler.py` strips `[System:` prefixes. If new patterns appear, add them to the filter.
