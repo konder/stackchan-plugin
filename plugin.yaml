@@ -1,0 +1,26 @@
+name: windowsill
+label: Windowsill Companion
+kind: platform
+version: 2.0.0
+description: >
+  Xiaozhi-protocol WebSocket gateway for the StackChan K151 desktop robot.
+  Message channel: mlx-whisper STT → Hermes AIAgent (LLM + memory + sessions + tools) → Qwen3-TTS.
+  Includes Silero VAD, dynamic device tool registration, image proxy, fire-and-forget tools.
+author: nanzhang
+optional_env:
+  - name: WINDOWSILL_HOST
+    description: "Bind host (default: 0.0.0.0)"
+    prompt: "Listen host"
+    password: false
+  - name: WINDOWSILL_PORT
+    description: "TCP port (default: 8083)"
+    prompt: "Listen port"
+    password: false
+  - name: WINDOWSILL_AUTH_TOKEN
+    description: "Bearer token for WS auth (default: test-token)"
+    prompt: "Auth token"
+    password: true
+  - name: WINDOWSILL_TTS_URL
+    description: "Qwen3-TTS endpoint (default: http://127.0.0.1:8082/v1/audio/speech)"
+    prompt: "TTS URL"
+    password: false
