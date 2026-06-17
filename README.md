@@ -218,6 +218,16 @@ Reference audio tips:
 - Record in a quiet environment. 24kHz mono WAV works best.
 - Content should be natural speech with varied intonation.
 
+## Future: Speech-to-Speech Models
+
+当前架构是 ASR → LLM → TTS 三段式。未来可考虑语音直出模型（voice-in → voice-out）替代整条链路：
+
+- **Qwen2.5-Omni (7B)**: 最成熟的全模态方案，4bit 量化约 4GB。推理能力弱于 deepseek-v4，不支持声音克隆。
+- **GLM-4-Voice (9B)**: 流式语音输出，声音自然，但模型较大。
+- **Mini-Omni (0.5B-2B)**: 轻量快速，但语音质量和推理能力明显不足。
+
+目前的瓶颈：语音直出模型尚不支持声音克隆，推理质量不及文本 LLM。待模型成熟后（尤其是声音克隆 + 推理能力提升），可通过 DXG 服务器部署 Qwen-Omni 类模型替换当前三段式架构。
+
 ## Troubleshooting
 
 **Device connects but ASR returns garbage (e.g. "字幕by索兰娅")**
