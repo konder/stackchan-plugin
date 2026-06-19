@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" font-family="-apple-system, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif">
+  <defs>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0 H0 V28" fill="none" stroke="#e7e7ee" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" rx="14" fill="#f7f7fa" stroke="#d6d6dd"/>
+  <!-- title bar -->
+  <rect width="1280" height="48" rx="14" fill="#ececf0"/><rect y="34" width="1280" height="14" fill="#ececf0"/>
+  <circle cx="26" cy="24" r="6.5" fill="#ff5f57"/><circle cx="48" cy="24" r="6.5" fill="#febc2e"/><circle cx="70" cy="24" r="6.5" fill="#28c840"/>
+  <text x="120" y="29" font-size="14" fill="#3a3a3c" font-weight="600">ReelForge — 项目「霓虹之夜」</text>
+  <rect x="520" y="12" width="240" height="26" rx="8" fill="#e0e0e6"/>
+  <text x="581" y="29" font-size="12.5" fill="#8a8a90" text-anchor="middle">对话优先</text>
+  <rect x="640" y="14" width="118" height="22" rx="7" fill="#ffffff" stroke="#c7c7cf"/>
+  <text x="700" y="29" font-size="12.5" fill="#1a1a1a" text-anchor="middle" font-weight="600">画布优先</text>
+  <circle cx="1140" cy="24" r="5" fill="#28c840"/><text x="1152" y="28" font-size="12" fill="#6a6a70">5090 已连接</text>
+
+  <!-- thin chat strip -->
+  <rect x="14" y="60" width="220" height="660" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="32" y="86" font-size="12.5" fill="#9a9aa0" font-weight="600">Agent</text>
+  <rect x="30" y="98" width="188" height="44" rx="9" fill="#f4f4f7"/><text x="42" y="116" font-size="11.5" fill="#3a3a3c">已为 3 个镜头分配</text><text x="42" y="132" font-size="11.5" fill="#3a3a3c">角色与背景 ✓</text>
+  <rect x="30" y="150" width="188" height="58" rx="9" fill="#f4f4f7"/><text x="42" y="170" font-size="11.5" fill="#3a3a3c">镜头 2 建议走云</text><text x="42" y="186" font-size="11.5" fill="#3a3a3c">（推轨运镜更稳）</text><text x="42" y="202" font-size="11.5" fill="#0a84ff">采纳 · 改回本地</text>
+  <rect x="30" y="664" width="188" height="44" rx="11" fill="#ffffff" stroke="#cfcfd6"/><text x="44" y="691" font-size="11.5" fill="#a0a0a6">和 Agent 对话…</text>
+
+  <!-- CANVAS (project layer) -->
+  <rect x="246" y="60" width="780" height="660" rx="10" fill="#fcfcfe" stroke="#e3e3e9"/>
+  <rect x="247" y="61" width="778" height="658" rx="9" fill="url(#grid)"/>
+  <!-- breadcrumb -->
+  <rect x="262" y="74" width="240" height="26" rx="8" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="276" y="91" font-size="12" fill="#6a6a70">项目层 ›</text><text x="330" y="91" font-size="12" fill="#1a1a1a" font-weight="600">霓虹之夜</text>
+
+  <!-- asset nodes (left column) -->
+  <g>
+    <rect x="280" y="150" width="150" height="86" rx="10" fill="#ffffff" stroke="#c9a6ff" stroke-width="2"/>
+    <rect x="280" y="150" width="150" height="24" rx="10" fill="#efe4ff"/><rect x="280" y="162" width="150" height="12" fill="#efe4ff"/>
+    <text x="292" y="167" font-size="11.5" fill="#7a4ad0" font-weight="600">角色 · 林夏</text>
+    <rect x="292" y="184" width="42" height="42" rx="6" fill="#e7e7ee"/><circle cx="313" cy="200" r="9" fill="#b9b9c4"/><path d="M300 222 q13 -16 26 0 z" fill="#b9b9c4"/>
+    <text x="344" y="198" font-size="10.5" fill="#6a6a70">archetype 锁定</text><text x="344" y="214" font-size="10.5" fill="#28a35a">identity ✓</text>
+
+    <rect x="280" y="256" width="150" height="64" rx="10" fill="#ffffff" stroke="#9ad0a6" stroke-width="2"/>
+    <rect x="280" y="256" width="150" height="22" rx="10" fill="#e3f5e8"/><rect x="280" y="267" width="150" height="11" fill="#e3f5e8"/>
+    <text x="292" y="271" font-size="11.5" fill="#2f8a4d" font-weight="600">服装 · 夜市</text>
+    <rect x="292" y="286" width="40" height="24" rx="5" fill="#e7e7ee"/>
+
+    <rect x="280" y="340" width="150" height="64" rx="10" fill="#ffffff" stroke="#9ac4e0" stroke-width="2"/>
+    <rect x="280" y="340" width="150" height="22" rx="10" fill="#e3eef7"/><rect x="280" y="351" width="150" height="11" fill="#e3eef7"/>
+    <text x="292" y="355" font-size="11.5" fill="#2f6a8a" font-weight="600">背景 · 雨夜街道</text>
+    <rect x="292" y="370" width="40" height="24" rx="5" fill="#e7e7ee"/>
+  </g>
+
+  <!-- shot nodes (right column) -->
+  <g>
+    <rect x="640" y="150" width="170" height="96" rx="10" fill="#ffffff" stroke="#c7c7cf" stroke-width="1.5"/>
+    <rect x="640" y="150" width="170" height="24" rx="10" fill="#eef0fb"/><rect x="640" y="162" width="170" height="12" fill="#eef0fb"/>
+    <text x="652" y="167" font-size="11.5" fill="#3a4ab0" font-weight="600">镜头 1 · 街口登场</text>
+    <rect x="652" y="184" width="146" height="50" rx="6" fill="#1c1c22"/><circle cx="700" cy="206" r="11" fill="#3a3a46"/>
+    <rect x="760" y="226" width="34" height="12" rx="6" fill="#28c840"/><text x="777" y="235" font-size="9" fill="#fff" text-anchor="middle">已选</text>
+
+    <rect x="640" y="270" width="170" height="96" rx="10" fill="#ffffff" stroke="#0a84ff" stroke-width="2"/>
+    <rect x="640" y="270" width="170" height="24" rx="10" fill="#dcecff"/><rect x="640" y="282" width="170" height="12" fill="#dcecff"/>
+    <text x="652" y="287" font-size="11.5" fill="#0a5ad0" font-weight="600">镜头 2 · 推轨穿行</text>
+    <rect x="652" y="304" width="146" height="50" rx="6" fill="#1c1c22"/>
+    <rect x="660" y="312" width="120" height="6" rx="3" fill="rgba(255,255,255,0.25)"/><rect x="660" y="312" width="70" height="6" rx="3" fill="#28c840"/>
+    <text x="725" y="346" font-size="9.5" fill="#8a8a90" text-anchor="middle">生成中 · 云(即梦) 60%</text>
+
+    <rect x="640" y="390" width="170" height="96" rx="10" fill="#ffffff" stroke="#c7c7cf" stroke-width="1.5"/>
+    <rect x="640" y="390" width="170" height="24" rx="10" fill="#eef0fb"/><rect x="640" y="402" width="170" height="12" fill="#eef0fb"/>
+    <text x="652" y="407" font-size="11.5" fill="#3a4ab0" font-weight="600">镜头 3 · 特写回眸</text>
+    <rect x="652" y="424" width="146" height="50" rx="6" fill="#f0f0f4"/><text x="725" y="453" font-size="9.5" fill="#a0a0a6" text-anchor="middle">待生成 · 双击进入工作流</text>
+  </g>
+
+  <!-- links asset -> shots -->
+  <g stroke="#c9a6ff" stroke-width="2" fill="none">
+    <path d="M430 193 C540 193 540 198 640 198"/>
+    <path d="M430 193 C540 193 540 318 640 318"/>
+    <path d="M430 193 C540 193 540 438 640 438"/>
+  </g>
+  <g stroke="#9ac4e0" stroke-width="2" fill="none">
+    <path d="M430 372 C540 372 540 210 640 210"/>
+    <path d="M430 372 C540 372 540 330 640 330"/>
+  </g>
+
+  <!-- minimap -->
+  <rect x="892" y="610" width="120" height="92" rx="8" fill="#ffffff" stroke="#d6d6dd"/>
+  <rect x="902" y="622" width="22" height="14" rx="3" fill="#efe4ff"/><rect x="902" y="640" width="22" height="10" rx="3" fill="#e3f5e8"/>
+  <rect x="972" y="624" width="28" height="16" rx="3" fill="#dcecff"/><rect x="972" y="646" width="28" height="16" rx="3" fill="#eef0fb"/>
+  <rect x="924" y="630" width="60" height="40" rx="3" fill="none" stroke="#0a84ff" stroke-width="1.5"/>
+  <text x="952" y="694" font-size="9" fill="#9a9aa0" text-anchor="middle">缩略地图</text>
+
+  <!-- RIGHT inspector -->
+  <rect x="1038" y="60" width="228" height="660" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="1056" y="86" font-size="12.5" fill="#9a9aa0" font-weight="600">检查器 · 镜头 2</text>
+  <g font-size="11.5" fill="#3a3a3c">
+    <text x="1056" y="116">景别　近景 → 中景</text>
+    <text x="1056" y="140">运镜　推轨穿行</text>
+    <text x="1056" y="164">时长　5s · 24fps</text>
+    <text x="1056" y="188">角色　林夏（档案注入）</text>
+    <text x="1056" y="212">背景　雨夜街道</text>
+  </g>
+  <rect x="1056" y="232" width="192" height="1" fill="#eee"/>
+  <text x="1056" y="256" font-size="11.5" fill="#6a6a70" font-weight="600">后端</text>
+  <rect x="1056" y="266" width="92" height="28" rx="8" fill="#f0f0f4"/><text x="1102" y="284" font-size="11" fill="#8a8a90" text-anchor="middle">本地 Wan</text>
+  <rect x="1154" y="266" width="92" height="28" rx="8" fill="#dcecff" stroke="#0a84ff"/><text x="1200" y="284" font-size="11" fill="#0a5ad0" text-anchor="middle" font-weight="600">云·即梦</text>
+  <text x="1056" y="320" font-size="11" fill="#6a6a70">预计：约 40s · ￥0.40</text>
+  <rect x="1056" y="676" width="192" height="34" rx="10" fill="#0a84ff"/><text x="1152" y="698" font-size="12.5" fill="#fff" text-anchor="middle" font-weight="600">双击进入工作流层 ▸</text>
+
+  <!-- bottom feedback bar -->
+  <rect x="246" y="730" width="1020" height="54" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <circle cx="272" cy="757" r="6" fill="#0a84ff"/><text x="288" y="761" font-size="12" fill="#3a3a3c">任务队列：1 运行中 · 1 排队</text>
+  <rect x="520" y="748" width="300" height="8" rx="4" fill="#e3e3e9"/><rect x="520" y="748" width="180" height="8" rx="4" fill="#0a84ff"/>
+  <text x="520" y="775" font-size="11" fill="#9a9aa0">镜头 2 · 即梦 60% · 预计剩余 16s</text>
+  <text x="1246" y="761" font-size="12" fill="#28a35a" text-anchor="end">本次累计：￥0.40</text>
+</svg>

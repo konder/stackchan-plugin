@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" font-family="-apple-system, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif">
+  <defs>
+    <pattern id="grid2" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0 H0 V26" fill="none" stroke="#e6e6ee" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="800" rx="14" fill="#f7f7fa" stroke="#d6d6dd"/>
+  <rect width="1280" height="48" rx="14" fill="#ececf0"/><rect y="34" width="1280" height="14" fill="#ececf0"/>
+  <circle cx="26" cy="24" r="6.5" fill="#ff5f57"/><circle cx="48" cy="24" r="6.5" fill="#febc2e"/><circle cx="70" cy="24" r="6.5" fill="#28c840"/>
+  <text x="120" y="29" font-size="14" fill="#3a3a3c" font-weight="600">ReelForge — 工作流层</text>
+  <circle cx="1140" cy="24" r="5" fill="#28c840"/><text x="1152" y="28" font-size="12" fill="#6a6a70">5090 已连接</text>
+
+  <!-- canvas -->
+  <rect x="14" y="60" width="1012" height="726" rx="10" fill="#fcfcfe" stroke="#e3e3e9"/>
+  <rect x="15" y="61" width="1010" height="724" rx="9" fill="url(#grid2)"/>
+  <!-- breadcrumb -->
+  <rect x="30" y="74" width="330" height="26" rx="8" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="44" y="91" font-size="12" fill="#6a6a70">项目层 › 镜头 2 ›</text><text x="200" y="91" font-size="12" fill="#1a1a1a" font-weight="600">工作流 (图生视频)</text>
+
+  <!-- nodes -->
+  <!-- 1 start frame -->
+  <g>
+    <rect x="44" y="150" width="180" height="150" rx="10" fill="#ffffff" stroke="#9ac4e0" stroke-width="2"/>
+    <rect x="44" y="150" width="180" height="24" rx="10" fill="#e3eef7"/><rect x="44" y="162" width="180" height="12" fill="#e3eef7"/>
+    <text x="56" y="167" font-size="11.5" fill="#2f6a8a" font-weight="600">起始帧（关键帧）</text>
+    <rect x="56" y="184" width="156" height="86" rx="6" fill="#1c1c22"/><circle cx="134" cy="216" r="14" fill="#3a3a46"/><path d="M96 270 q38 -42 76 0 z" fill="#3a3a46"/>
+    <text x="134" y="290" font-size="10" fill="#28a35a" text-anchor="middle">✓ 完成</text>
+    <circle cx="224" cy="225" r="5" fill="#9ac4e0"/>
+  </g>
+  <!-- 2 character bible -->
+  <g>
+    <rect x="44" y="330" width="180" height="96" rx="10" fill="#ffffff" stroke="#c9a6ff" stroke-width="2"/>
+    <rect x="44" y="330" width="180" height="24" rx="10" fill="#efe4ff"/><rect x="44" y="342" width="180" height="12" fill="#efe4ff"/>
+    <text x="56" y="347" font-size="11.5" fill="#7a4ad0" font-weight="600">角色档案注入</text>
+    <text x="56" y="374" font-size="10.5" fill="#3a3a3c">林夏 · identity 锁定</text>
+    <text x="56" y="392" font-size="10.5" fill="#3a3a3c">IPAdapter + 触发词</text>
+    <text x="56" y="410" font-size="10.5" fill="#28a35a">✓ 完成</text>
+    <circle cx="224" cy="378" r="5" fill="#c9a6ff"/>
+  </g>
+  <!-- 3 model / wan -->
+  <g>
+    <rect x="304" y="240" width="180" height="120" rx="10" fill="#ffffff" stroke="#c7c7cf" stroke-width="1.5"/>
+    <rect x="304" y="240" width="180" height="24" rx="10" fill="#eef0fb"/><rect x="304" y="252" width="180" height="12" fill="#eef0fb"/>
+    <text x="316" y="257" font-size="11.5" fill="#3a4ab0" font-weight="600">Wan 2.x I2V 模型</text>
+    <text x="316" y="284" font-size="10.5" fill="#3a3a3c">motion: 推轨</text>
+    <text x="316" y="302" font-size="10.5" fill="#3a3a3c">cam: dolly-in</text>
+    <text x="316" y="320" font-size="10.5" fill="#28a35a">✓ 完成</text>
+    <circle cx="304" cy="300" r="5" fill="#c7c7cf"/><circle cx="484" cy="300" r="5" fill="#c7c7cf"/>
+  </g>
+  <!-- 4 KSampler (RUNNING) -->
+  <g>
+    <rect x="564" y="232" width="190" height="150" rx="10" fill="#ffffff" stroke="#0a84ff" stroke-width="3"/>
+    <rect x="564" y="232" width="190" height="24" rx="10" fill="#dcecff"/><rect x="564" y="244" width="190" height="12" fill="#dcecff"/>
+    <text x="576" y="249" font-size="11.5" fill="#0a5ad0" font-weight="600">KSampler（运行中）</text>
+    <rect x="576" y="268" width="166" height="80" rx="6" fill="#0c0c12"/>
+    <!-- latent preview look -->
+    <g opacity="0.6" fill="#2a3a6a"><circle cx="640" cy="300" r="13"/><path d="M600 348 q40 -36 80 0 z"/></g>
+    <text x="659" y="362" font-size="9.5" fill="#8a8a90" text-anchor="middle">latent 预览（TAESD）</text>
+    <rect x="576" y="356" width="166" height="6" rx="3" fill="#e3e3e9"/><rect x="576" y="356" width="100" height="6" rx="3" fill="#0a84ff"/>
+    <text x="576" y="378" font-size="10" fill="#0a5ad0">step 18 / 25</text>
+    <circle cx="564" cy="300" r="5" fill="#0a84ff"/><circle cx="754" cy="300" r="5" fill="#0a84ff"/>
+  </g>
+  <!-- 5 VAE decode -->
+  <g>
+    <rect x="794" y="250" width="150" height="96" rx="10" fill="#ffffff" stroke="#c7c7cf" stroke-width="1.5"/>
+    <rect x="794" y="250" width="150" height="24" rx="10" fill="#eef0fb"/><rect x="794" y="262" width="150" height="12" fill="#eef0fb"/>
+    <text x="806" y="267" font-size="11.5" fill="#3a4ab0" font-weight="600">VAE Decode</text>
+    <text x="806" y="296" font-size="10.5" fill="#a0a0a6">等待上游…</text>
+    <circle cx="794" cy="300" r="5" fill="#c7c7cf"/><circle cx="944" cy="300" r="5" fill="#c7c7cf"/>
+  </g>
+  <!-- 6 video combine -->
+  <g>
+    <rect x="794" y="380" width="150" height="96" rx="10" fill="#ffffff" stroke="#9ad0a6" stroke-width="2"/>
+    <rect x="794" y="380" width="150" height="24" rx="10" fill="#e3f5e8"/><rect x="794" y="392" width="150" height="12" fill="#e3f5e8"/>
+    <text x="806" y="397" font-size="11.5" fill="#2f8a4d" font-weight="600">合成视频 → take</text>
+    <text x="806" y="426" font-size="10.5" fill="#a0a0a6">待生成</text>
+    <circle cx="794" cy="428" r="5" fill="#9ad0a6"/>
+  </g>
+
+  <!-- wires -->
+  <g stroke-width="2.5" fill="none">
+    <path d="M224 225 C270 225 270 285 304 285" stroke="#9ac4e0"/>
+    <path d="M224 378 C270 378 270 315 304 315" stroke="#c9a6ff"/>
+    <path d="M484 300 C520 300 520 300 564 300" stroke="#0a84ff"/>
+    <path d="M754 300 C774 300 774 298 794 298" stroke="#0a84ff" stroke-dasharray="5 4"/>
+    <path d="M944 300 C964 300 964 420 944 428" stroke="#c7c7cf"/>
+  </g>
+
+  <!-- Agent diff callout -->
+  <rect x="560" y="410" width="260" height="64" rx="10" fill="#fff7e6" stroke="#f0c660"/>
+  <circle cx="582" cy="432" r="8" fill="#f0a000"/><text x="582" y="436" font-size="11" fill="#fff" text-anchor="middle">A</text>
+  <text x="600" y="430" font-size="11.5" fill="#7a5a00" font-weight="600">Agent 调整：steps 25 → 30</text>
+  <text x="600" y="448" font-size="10.5" fill="#7a5a00">原因：云草稿偏糊，提采样步数</text>
+  <rect x="600" y="455" width="44" height="16" rx="6" fill="#28a35a"/><text x="622" y="467" font-size="9.5" fill="#fff" text-anchor="middle">接受</text>
+  <rect x="652" y="455" width="44" height="16" rx="6" fill="#ffffff" stroke="#c0c0c8"/><text x="674" y="467" font-size="9.5" fill="#6a6a70" text-anchor="middle">撤销</text>
+
+  <!-- toolbar -->
+  <rect x="844" y="74" width="166" height="30" rx="9" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="862" y="93" font-size="11.5" fill="#6a6a70">＋节点</text><text x="916" y="93" font-size="11.5" fill="#6a6a70">校验</text><text x="966" y="93" font-size="11.5" fill="#0a84ff" font-weight="600">运行</text>
+
+  <!-- right inspector -->
+  <rect x="1038" y="60" width="228" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="1056" y="86" font-size="12.5" fill="#9a9aa0" font-weight="600">节点检查器 · KSampler</text>
+  <g font-size="11.5" fill="#3a3a3c">
+    <text x="1056" y="118">seed</text><rect x="1130" y="106" width="118" height="22" rx="6" fill="#f0f0f4"/><text x="1142" y="121" font-size="11" fill="#6a6a70">812374 🎲</text>
+    <text x="1056" y="150">steps</text><rect x="1130" y="138" width="118" height="22" rx="6" fill="#dcecff" stroke="#0a84ff"/><text x="1142" y="153" font-size="11" fill="#0a5ad0">30</text>
+    <text x="1056" y="182">cfg</text><rect x="1130" y="170" width="118" height="22" rx="6" fill="#f0f0f4"/><text x="1142" y="185" font-size="11" fill="#6a6a70">6.5</text>
+    <text x="1056" y="214">sampler</text><rect x="1130" y="202" width="118" height="22" rx="6" fill="#f0f0f4"/><text x="1142" y="217" font-size="11" fill="#6a6a70">dpmpp_2m ▾</text>
+    <text x="1056" y="246">scheduler</text><rect x="1130" y="234" width="118" height="22" rx="6" fill="#f0f0f4"/><text x="1142" y="249" font-size="11" fill="#6a6a70">karras ▾</text>
+  </g>
+  <rect x="1056" y="270" width="192" height="1" fill="#eee"/>
+  <text x="1056" y="296" font-size="11" fill="#9a9aa0">所有取值已对照 /object_info 校验 ✓</text>
+  <text x="1056" y="330" font-size="11.5" fill="#6a6a70" font-weight="600">本镜头 takes</text>
+  <g stroke="#d3d3db" fill="#1c1c22"><rect x="1056" y="342" width="60" height="40" rx="5"/><rect x="1122" y="342" width="60" height="40" rx="5"/><rect x="1188" y="342" width="60" height="40" rx="5"/></g>
+  <text x="1056" y="402" font-size="11" fill="#0a84ff">在选片视图中对比 ▸</text>
+</svg>

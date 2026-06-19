@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" font-family="-apple-system, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif">
+  <rect width="1280" height="800" rx="14" fill="#f7f7fa" stroke="#d6d6dd"/>
+  <rect width="1280" height="48" rx="14" fill="#ececf0"/><rect y="34" width="1280" height="14" fill="#ececf0"/>
+  <circle cx="26" cy="24" r="6.5" fill="#ff5f57"/><circle cx="48" cy="24" r="6.5" fill="#febc2e"/><circle cx="70" cy="24" r="6.5" fill="#28c840"/>
+  <text x="120" y="29" font-size="14" fill="#3a3a3c" font-weight="600">ReelForge — 资产库 · Character Bible</text>
+  <circle cx="1140" cy="24" r="5" fill="#28c840"/><text x="1152" y="28" font-size="12" fill="#6a6a70">5090 已连接</text>
+
+  <!-- left categories -->
+  <rect x="14" y="60" width="200" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="32" y="86" font-size="12.5" fill="#9a9aa0" font-weight="600">资产分类</text>
+  <g font-size="12.5">
+    <rect x="26" y="98" width="176" height="38" rx="8" fill="#dcecff" stroke="#0a84ff"/><text x="40" y="122" fill="#0a5ad0" font-weight="600">角色 (2)</text>
+    <rect x="26" y="142" width="176" height="38" rx="8" fill="#f4f4f7"/><text x="40" y="166" fill="#3a3a3c">服装 (3)</text>
+    <rect x="26" y="186" width="176" height="38" rx="8" fill="#f4f4f7"/><text x="40" y="210" fill="#3a3a3c">道具 (4)</text>
+    <rect x="26" y="230" width="176" height="38" rx="8" fill="#f4f4f7"/><text x="40" y="254" fill="#3a3a3c">场景背景 (3)</text>
+    <rect x="26" y="274" width="176" height="38" rx="8" fill="#f4f4f7"/><text x="40" y="298" fill="#3a3a3c">美术风格 (1)</text>
+  </g>
+  <rect x="26" y="734" width="176" height="38" rx="9" fill="#0a84ff"/><text x="114" y="758" font-size="12.5" fill="#fff" text-anchor="middle" font-weight="600">＋ 新建角色</text>
+
+  <!-- main: character detail -->
+  <rect x="226" y="60" width="800" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="246" y="92" font-size="16" fill="#1a1a1a" font-weight="700">林夏</text>
+  <rect x="316" y="78" width="92" height="22" rx="11" fill="#e3f5e8"/><text x="362" y="94" font-size="11" fill="#28a35a" text-anchor="middle">在 3 个镜头使用</text>
+
+  <!-- multi-view turnaround sheet -->
+  <text x="246" y="124" font-size="12.5" fill="#6a6a70" font-weight="600">多视角定稿（turnaround）</text>
+  <g>
+    <rect x="246" y="136" width="170" height="210" rx="10" fill="#1c1c22"/><g fill="#3a3a46"><circle cx="331" cy="210" r="26" fill="#3a3a46"/><path d="M276 346 q55 -60 110 0 z"/></g><text x="331" y="334" font-size="11" fill="#9a9aa0" text-anchor="middle">正面</text>
+    <rect x="426" y="136" width="170" height="210" rx="10" fill="#1c1c22"/><g fill="#3a3a46"><circle cx="511" cy="210" r="26"/><path d="M456 346 q55 -60 110 0 z"/></g><text x="511" y="334" font-size="11" fill="#9a9aa0" text-anchor="middle">侧面</text>
+    <rect x="606" y="136" width="170" height="210" rx="10" fill="#1c1c22"/><g fill="#3a3a46"><circle cx="691" cy="210" r="26"/><path d="M636 346 q55 -60 110 0 z"/></g><text x="691" y="334" font-size="11" fill="#9a9aa0" text-anchor="middle">背面</text>
+    <rect x="786" y="136" width="170" height="210" rx="10" fill="#1c1c22"/><g fill="#3a3a46"><circle cx="871" cy="210" r="26"/><path d="M816 346 q55 -60 110 0 z"/></g><text x="871" y="334" font-size="11" fill="#9a9aa0" text-anchor="middle">3/4 侧</text>
+  </g>
+
+  <!-- expressions row -->
+  <text x="246" y="380" font-size="12.5" fill="#6a6a70" font-weight="600">表情 / 姿态</text>
+  <g fill="#1c1c22">
+    <rect x="246" y="392" width="80" height="80" rx="8"/><rect x="336" y="392" width="80" height="80" rx="8"/><rect x="426" y="392" width="80" height="80" rx="8"/><rect x="516" y="392" width="80" height="80" rx="8"/>
+    <rect x="606" y="392" width="80" height="80" rx="8" fill="#f0f0f4" stroke="#cfcfd6"/>
+  </g>
+  <text x="646" y="438" font-size="22" fill="#b9b9c4" text-anchor="middle">＋</text>
+
+  <!-- identity lock card -->
+  <rect x="246" y="496" width="710" height="130" rx="12" fill="#faf7ff" stroke="#e6d9ff"/>
+  <text x="266" y="522" font-size="12.5" fill="#7a4ad0" font-weight="700">身份锁定（一致性核心，Agent 会自动注入到所有镜头）</text>
+  <g font-size="11.5" fill="#3a3a3c">
+    <text x="266" y="552">InstantID / PuLID</text><rect x="430" y="540" width="40" height="20" rx="10" fill="#28c840"/><circle cx="460" cy="550" r="8" fill="#fff"/><text x="486" y="555" fill="#28a35a">开</text>
+    <text x="266" y="582">IPAdapter 参考图</text><rect x="430" y="570" width="40" height="20" rx="10" fill="#28c840"/><circle cx="460" cy="580" r="8" fill="#fff"/><text x="486" y="585" fill="#28a35a">4 张</text>
+    <text x="266" y="612">专属 LoRA（5090 训练）</text><rect x="430" y="600" width="40" height="20" rx="10" fill="#d3d3db"/><circle cx="440" cy="610" r="8" fill="#fff"/><text x="486" y="615" fill="#9a9aa0">未训练 · 一键训练</text>
+    <text x="560" y="552">触发词</text><rect x="620" y="540" width="320" height="22" rx="6" fill="#ffffff" stroke="#d3d3db"/><text x="632" y="555" fill="#6a6a70">linxia, cyberpunk girl, neon</text>
+    <text x="560" y="588">相似度阈值</text><rect x="640" y="582" width="220" height="6" rx="3" fill="#e3e3e9"/><rect x="640" y="582" width="170" height="6" rx="3" fill="#7a4ad0"/><circle cx="810" cy="585" r="8" fill="#fff" stroke="#7a4ad0" stroke-width="2"/><text x="876" y="588" fill="#7a4ad0">0.92</text>
+  </g>
+
+  <!-- linked usage -->
+  <text x="246" y="660" font-size="12.5" fill="#6a6a70" font-weight="600">被引用于</text>
+  <g font-size="11.5">
+    <rect x="246" y="672" width="150" height="34" rx="8" fill="#eef0fb"/><text x="262" y="694" fill="#3a4ab0">镜头 1 · 街口登场</text>
+    <rect x="406" y="672" width="150" height="34" rx="8" fill="#eef0fb"/><text x="422" y="694" fill="#3a4ab0">镜头 2 · 推轨穿行</text>
+    <rect x="566" y="672" width="150" height="34" rx="8" fill="#eef0fb"/><text x="582" y="694" fill="#3a4ab0">镜头 3 · 特写回眸</text>
+  </g>
+  <text x="246" y="740" font-size="11" fill="#9a9aa0">改动身份锁定后，可一键「重生成受影响镜头」以保持全片一致。</text>
+
+  <!-- right: agent assist -->
+  <rect x="1038" y="60" width="228" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="1056" y="86" font-size="12.5" fill="#9a9aa0" font-weight="600">Agent 协助</text>
+  <rect x="1056" y="98" width="192" height="96" rx="10" fill="#f4f4f7"/>
+  <text x="1070" y="122" font-size="11.5" fill="#3a3a3c">我可以为「林夏」补一套</text>
+  <text x="1070" y="140" font-size="11.5" fill="#3a3a3c">情绪表情（喜/怒/惊），</text>
+  <text x="1070" y="158" font-size="11.5" fill="#3a3a3c">用于特写镜头。</text>
+  <rect x="1070" y="166" width="80" height="20" rx="8" fill="#0a84ff"/><text x="1110" y="180" font-size="10.5" fill="#fff" text-anchor="middle">去生成</text>
+  <rect x="1056" y="206" width="192" height="76" rx="10" fill="#fff7e6" stroke="#f0c660"/>
+  <text x="1070" y="230" font-size="11.5" fill="#7a5a00">建议训练专属 LoRA：</text>
+  <text x="1070" y="248" font-size="11" fill="#7a5a00">镜头多、能进一步稳住</text>
+  <text x="1070" y="264" font-size="11" fill="#7a5a00">一致性（5090 约 8 分钟）。</text>
+  <rect x="1056" y="744" width="192" height="34" rx="10" fill="#ffffff" stroke="#c7c7cf"/><text x="1152" y="766" font-size="12" fill="#3a3a3c" text-anchor="middle">导出角色档案</text>
+</svg>

@@ -38,6 +38,8 @@
 | [docs/agent-system.md](docs/agent-system.md) | 导演/搭图 Agent、工具集、配方库、schema 校验、一致性方案 |
 | [docs/pipeline.md](docs/pipeline.md) | 制作管线全景、本地/云路由、反馈系统 |
 | [docs/api-contract.md](docs/api-contract.md) | Orchestrator API 与 WebSocket 事件契约 |
+| [docs/diagrams.md](docs/diagrams.md) | 流程图（架构 / 管线 / Agent 循环 / 路由 / 数据模型 / 时序） |
+| [docs/mockups.md](docs/mockups.md) | 关键界面视觉稿（SVG 线框：对话/画布/工作流/选片/角色库） |
 | [docs/roadmap.md](docs/roadmap.md) | 里程碑、MVP 垂直切片、未决问题 |
 | [docs/native-ui.md](docs/native-ui.md) | **下一步讨论**：macOS 原生 UI 要解决的核心问题（占位） |
 

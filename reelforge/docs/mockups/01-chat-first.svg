@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" font-family="-apple-system, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfbfd"/><stop offset="1" stop-color="#f2f2f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="800" rx="14" fill="url(#bg)" stroke="#d6d6dd"/>
+  <!-- title bar -->
+  <rect width="1280" height="48" rx="14" fill="#ececf0"/><rect y="34" width="1280" height="14" fill="#ececf0"/>
+  <circle cx="26" cy="24" r="6.5" fill="#ff5f57"/><circle cx="48" cy="24" r="6.5" fill="#febc2e"/><circle cx="70" cy="24" r="6.5" fill="#28c840"/>
+  <text x="120" y="29" font-size="14" fill="#3a3a3c" font-weight="600">ReelForge — 项目「霓虹之夜」</text>
+  <!-- segmented mode switch -->
+  <rect x="520" y="12" width="240" height="26" rx="8" fill="#e0e0e6"/>
+  <rect x="522" y="14" width="118" height="22" rx="7" fill="#ffffff" stroke="#c7c7cf"/>
+  <text x="581" y="29" font-size="12.5" fill="#1a1a1a" text-anchor="middle" font-weight="600">对话优先</text>
+  <text x="700" y="29" font-size="12.5" fill="#8a8a90" text-anchor="middle">画布优先</text>
+  <circle cx="1140" cy="24" r="5" fill="#28c840"/><text x="1152" y="28" font-size="12" fill="#6a6a70">5090 已连接</text>
+
+  <!-- LEFT: chat panel -->
+  <rect x="14" y="60" width="746" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="34" y="92" font-size="13" fill="#9a9aa0" font-weight="600">对话 · 导演 Agent</text>
+
+  <!-- user bubble -->
+  <rect x="300" y="108" width="440" height="50" rx="12" fill="#0a84ff"/>
+  <text x="320" y="130" font-size="13.5" fill="#ffffff">做个赛博朋克少女「林夏」，要能用在</text>
+  <text x="320" y="148" font-size="13.5" fill="#ffffff">后面所有镜头里保持一致</text>
+
+  <!-- agent bubble -->
+  <rect x="34" y="176" width="500" height="196" rx="12" fill="#f4f4f7" stroke="#e6e6ec"/>
+  <text x="52" y="200" font-size="13.5" fill="#1a1a1a">已用配方 char_turnaround 生成 4 视角定稿，</text>
+  <text x="52" y="220" font-size="13.5" fill="#1a1a1a">并锁成「角色档案」✓（identity + 触发词）</text>
+  <!-- thumbnails -->
+  <g>
+    <rect x="52" y="234" width="100" height="100" rx="8" fill="#e7e7ee" stroke="#d3d3db"/>
+    <rect x="164" y="234" width="100" height="100" rx="8" fill="#e7e7ee" stroke="#d3d3db"/>
+    <rect x="276" y="234" width="100" height="100" rx="8" fill="#e7e7ee" stroke="#d3d3db"/>
+    <rect x="388" y="234" width="100" height="100" rx="8" fill="#e7e7ee" stroke="#d3d3db"/>
+    <text x="102" y="350" font-size="11" fill="#8a8a90" text-anchor="middle">正面</text>
+    <text x="214" y="350" font-size="11" fill="#8a8a90" text-anchor="middle">侧面</text>
+    <text x="326" y="350" font-size="11" fill="#8a8a90" text-anchor="middle">背面</text>
+    <text x="438" y="350" font-size="11" fill="#8a8a90" text-anchor="middle">3/4</text>
+    <!-- little portrait glyphs -->
+    <g fill="#b9b9c4"><circle cx="102" cy="270" r="13"/><path d="M82 318 q20 -28 40 0 z"/></g>
+    <g fill="#b9b9c4"><circle cx="214" cy="270" r="13"/><path d="M194 318 q20 -28 40 0 z"/></g>
+    <g fill="#b9b9c4"><circle cx="326" cy="270" r="13"/><path d="M306 318 q20 -28 40 0 z"/></g>
+    <g fill="#b9b9c4"><circle cx="438" cy="270" r="13"/><path d="M418 318 q20 -28 40 0 z"/></g>
+  </g>
+  <text x="52" y="364" font-size="12" fill="#0a84ff">▸ 为什么这么搭 / 用了哪些参数</text>
+
+  <!-- knobs card -->
+  <rect x="34" y="392" width="500" height="150" rx="12" fill="#ffffff" stroke="#e6e6ec"/>
+  <text x="52" y="416" font-size="12.5" fill="#6a6a70" font-weight="600">快速旋钮（Agent 已设好，可微调）</text>
+  <g font-size="12" fill="#3a3a3c">
+    <text x="52" y="446">风格强度</text><rect x="160" y="439" width="350" height="6" rx="3" fill="#e3e3e9"/><rect x="160" y="439" width="240" height="6" rx="3" fill="#0a84ff"/><circle cx="400" cy="442" r="8" fill="#ffffff" stroke="#0a84ff" stroke-width="2"/>
+    <text x="52" y="482">相似度锁定</text><rect x="160" y="475" width="350" height="6" rx="3" fill="#e3e3e9"/><rect x="160" y="475" width="300" height="6" rx="3" fill="#0a84ff"/><circle cx="460" cy="478" r="8" fill="#ffffff" stroke="#0a84ff" stroke-width="2"/>
+    <text x="52" y="518">细节/锐度</text><rect x="160" y="511" width="350" height="6" rx="3" fill="#e3e3e9"/><rect x="160" y="511" width="160" height="6" rx="3" fill="#0a84ff"/><circle cx="320" cy="514" r="8" fill="#ffffff" stroke="#0a84ff" stroke-width="2"/>
+  </g>
+
+  <!-- input box -->
+  <rect x="34" y="724" width="692" height="46" rx="12" fill="#ffffff" stroke="#cfcfd6"/>
+  <text x="52" y="752" font-size="13" fill="#a0a0a6">接着给「林夏」做一套夜市的服装…</text>
+  <rect x="678" y="732" width="40" height="30" rx="9" fill="#0a84ff"/><path d="M690 747 l12 -8 v16 z" fill="#fff"/>
+
+  <!-- RIGHT: preview panel -->
+  <rect x="772" y="60" width="494" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="792" y="92" font-size="13" fill="#9a9aa0" font-weight="600">预览</text>
+  <rect x="792" y="104" width="454" height="430" rx="10" fill="#1c1c22"/>
+  <g fill="#3a3a46"><circle cx="1019" cy="250" r="48"/><path d="M935 470 q84 -150 168 0 z"/></g>
+  <text x="1019" y="512" font-size="12" fill="#8a8a90" text-anchor="middle">林夏 · 正面定稿（点击放大 / 选用）</text>
+  <!-- progress chip -->
+  <rect x="812" y="124" width="150" height="28" rx="14" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="830" cy="138" r="5" fill="#28c840"/><text x="844" y="142" font-size="12" fill="#fff">出图中 18 / 25</text>
+
+  <!-- collapsed canvas -->
+  <rect x="792" y="552" width="454" height="216" rx="10" fill="#f4f4f7" stroke="#e6e6ec"/>
+  <text x="812" y="580" font-size="12.5" fill="#6a6a70" font-weight="600">画布（折叠）</text>
+  <text x="1226" y="580" font-size="12.5" fill="#0a84ff" text-anchor="end">切换到画布 ▸</text>
+  <g stroke="#c9c9d2" fill="#ffffff">
+    <rect x="824" y="600" width="92" height="48" rx="6"/><rect x="980" y="600" width="92" height="48" rx="6"/><rect x="1136" y="640" width="92" height="48" rx="6"/>
+  </g>
+  <g stroke="#b9b9c4" stroke-width="2" fill="none"><path d="M916 624 H980"/><path d="M1072 624 q40 0 64 30"/></g>
+  <text x="812" y="740" font-size="11.5" fill="#9a9aa0">入门用户默认看这里：对话 + 预览 + 少量旋钮；需要掌控时一键展开节点图。</text>
+</svg>

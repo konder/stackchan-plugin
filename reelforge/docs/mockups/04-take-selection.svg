@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" font-family="-apple-system, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif">
+  <rect width="1280" height="800" rx="14" fill="#f7f7fa" stroke="#d6d6dd"/>
+  <rect width="1280" height="48" rx="14" fill="#ececf0"/><rect y="34" width="1280" height="14" fill="#ececf0"/>
+  <circle cx="26" cy="24" r="6.5" fill="#ff5f57"/><circle cx="48" cy="24" r="6.5" fill="#febc2e"/><circle cx="70" cy="24" r="6.5" fill="#28c840"/>
+  <text x="120" y="29" font-size="14" fill="#3a3a3c" font-weight="600">ReelForge — 选片 · 镜头 2「推轨穿行」</text>
+  <circle cx="1140" cy="24" r="5" fill="#28c840"/><text x="1152" y="28" font-size="12" fill="#6a6a70">5090 已连接</text>
+
+  <!-- left shot list -->
+  <rect x="14" y="60" width="200" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="32" y="86" font-size="12.5" fill="#9a9aa0" font-weight="600">镜头</text>
+  <g font-size="12">
+    <rect x="26" y="98" width="176" height="40" rx="8" fill="#f4f4f7"/><text x="40" y="123" fill="#3a3a3c">1 · 街口登场 ✓</text>
+    <rect x="26" y="144" width="176" height="40" rx="8" fill="#dcecff" stroke="#0a84ff"/><text x="40" y="169" fill="#0a5ad0" font-weight="600">2 · 推轨穿行</text>
+    <rect x="26" y="190" width="176" height="40" rx="8" fill="#f4f4f7"/><text x="40" y="215" fill="#3a3a3c">3 · 特写回眸</text>
+  </g>
+
+  <!-- take grid -->
+  <rect x="226" y="60" width="800" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="246" y="88" font-size="13" fill="#3a3a3c" font-weight="600">6 条 take</text>
+  <text x="430" y="88" font-size="11.5" fill="#9a9aa0">Agent 已按美学+一致性自动初筛，推荐 #3</text>
+
+  <!-- take card helper drawn inline x6 -->
+  <!-- row1 -->
+  <g>
+    <rect x="246" y="104" width="246" height="196" rx="10" fill="#1c1c22"/>
+    <circle cx="369" cy="180" r="22" fill="rgba(255,255,255,0.12)"/><path d="M362 168 l16 12 l-16 12 z" fill="#fff"/>
+    <rect x="258" y="116" width="42" height="20" rx="10" fill="rgba(0,0,0,0.5)"/><text x="279" y="130" font-size="10" fill="#fff" text-anchor="middle">#1</text>
+    <rect x="430" y="270" width="50" height="20" rx="10" fill="rgba(0,0,0,0.55)"/><text x="455" y="284" font-size="10" fill="#ffd84a" text-anchor="middle">★ 6.8</text>
+    <text x="258" y="288" font-size="10" fill="#aaa">本地 · 4.2s</text>
+  </g>
+  <g>
+    <rect x="504" y="104" width="246" height="196" rx="10" fill="#1c1c22"/>
+    <circle cx="627" cy="180" r="22" fill="rgba(255,255,255,0.12)"/><path d="M620 168 l16 12 l-16 12 z" fill="#fff"/>
+    <rect x="516" y="116" width="42" height="20" rx="10" fill="rgba(0,0,0,0.5)"/><text x="537" y="130" font-size="10" fill="#fff" text-anchor="middle">#2</text>
+    <rect x="688" y="270" width="50" height="20" rx="10" fill="rgba(0,0,0,0.55)"/><text x="713" y="284" font-size="10" fill="#ffd84a" text-anchor="middle">★ 7.1</text>
+    <text x="516" y="288" font-size="10" fill="#aaa">本地 · 4.4s</text>
+  </g>
+  <!-- #3 selected -->
+  <g>
+    <rect x="762" y="104" width="246" height="196" rx="10" fill="#1c1c22" stroke="#0a84ff" stroke-width="3"/>
+    <circle cx="885" cy="180" r="22" fill="rgba(10,132,255,0.5)"/><path d="M878 168 l16 12 l-16 12 z" fill="#fff"/>
+    <rect x="774" y="116" width="42" height="20" rx="10" fill="#0a84ff"/><text x="795" y="130" font-size="10" fill="#fff" text-anchor="middle">#3</text>
+    <rect x="930" y="116" width="68" height="20" rx="10" fill="#28c840"/><text x="964" y="130" font-size="10" fill="#fff" text-anchor="middle">✓ 已选用</text>
+    <rect x="930" y="270" width="68" height="20" rx="10" fill="rgba(0,0,0,0.55)"/><text x="964" y="284" font-size="10" fill="#ffd84a" text-anchor="middle">★ 8.4 推荐</text>
+    <text x="774" y="288" font-size="10" fill="#aaa">云·即梦 · ￥0.40</text>
+  </g>
+  <!-- row2 -->
+  <g>
+    <rect x="246" y="316" width="246" height="196" rx="10" fill="#1c1c22"/>
+    <circle cx="369" cy="392" r="22" fill="rgba(255,255,255,0.12)"/><path d="M362 380 l16 12 l-16 12 z" fill="#fff"/>
+    <rect x="258" y="328" width="42" height="20" rx="10" fill="rgba(0,0,0,0.5)"/><text x="279" y="342" font-size="10" fill="#fff" text-anchor="middle">#4</text>
+    <rect x="430" y="482" width="50" height="20" rx="10" fill="rgba(0,0,0,0.55)"/><text x="455" y="496" font-size="10" fill="#ffd84a" text-anchor="middle">★ 7.6</text>
+    <text x="258" y="500" font-size="10" fill="#aaa">云·即梦 · ￥0.40</text>
+  </g>
+  <g opacity="0.55">
+    <rect x="504" y="316" width="246" height="196" rx="10" fill="#1c1c22"/>
+    <rect x="516" y="328" width="42" height="20" rx="10" fill="rgba(0,0,0,0.5)"/><text x="537" y="342" font-size="10" fill="#fff" text-anchor="middle">#5</text>
+    <text x="627" y="420" font-size="11" fill="#d36" text-anchor="middle">一致性偏差（脸）</text>
+    <rect x="600" y="430" width="54" height="20" rx="10" fill="rgba(255,80,80,0.25)"/><text x="627" y="444" font-size="10" fill="#ff8a8a" text-anchor="middle">已弃 ✕</text>
+  </g>
+  <g>
+    <rect x="762" y="316" width="246" height="196" rx="10" fill="#1c1c22"/>
+    <circle cx="885" cy="392" r="22" fill="rgba(255,255,255,0.12)"/><path d="M878 380 l16 12 l-16 12 z" fill="#fff"/>
+    <rect x="774" y="328" width="42" height="20" rx="10" fill="rgba(0,0,0,0.5)"/><text x="795" y="342" font-size="10" fill="#fff" text-anchor="middle">#6</text>
+    <rect x="942" y="482" width="56" height="20" rx="10" fill="rgba(0,0,0,0.55)"/><text x="970" y="496" font-size="10" fill="#ffd84a" text-anchor="middle">★ 7.9</text>
+    <text x="774" y="500" font-size="10" fill="#aaa">本地 · 4.3s</text>
+  </g>
+
+  <!-- action bar -->
+  <rect x="246" y="540" width="762" height="56" rx="10" fill="#f4f4f7" stroke="#e6e6ec"/>
+  <rect x="262" y="552" width="120" height="32" rx="9" fill="#0a84ff"/><text x="322" y="573" font-size="12.5" fill="#fff" text-anchor="middle" font-weight="600">选用 #3</text>
+  <rect x="392" y="552" width="120" height="32" rx="9" fill="#ffffff" stroke="#c7c7cf"/><text x="452" y="573" font-size="12.5" fill="#3a3a3c" text-anchor="middle">补帧 + 超分</text>
+  <rect x="522" y="552" width="120" height="32" rx="9" fill="#ffffff" stroke="#c7c7cf"/><text x="582" y="573" font-size="12.5" fill="#3a3a3c" text-anchor="middle">再生成 2 条</text>
+  <text x="992" y="573" font-size="12" fill="#9a9aa0" text-anchor="end">选用后回到项目层 ▸</text>
+
+  <!-- compare panel -->
+  <rect x="246" y="612" width="762" height="160" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="266" y="638" font-size="12.5" fill="#6a6a70" font-weight="600">对比（#2 vs #3）</text>
+  <rect x="266" y="650" width="350" height="104" rx="8" fill="#1c1c22"/><text x="441" y="706" font-size="11" fill="#888" text-anchor="middle">#2</text>
+  <rect x="638" y="650" width="350" height="104" rx="8" fill="#1c1c22" stroke="#0a84ff" stroke-width="2"/><text x="813" y="706" font-size="11" fill="#888" text-anchor="middle">#3（推荐）</text>
+
+  <!-- right inspector -->
+  <rect x="1038" y="60" width="228" height="726" rx="10" fill="#ffffff" stroke="#e3e3e9"/>
+  <text x="1056" y="86" font-size="12.5" fill="#9a9aa0" font-weight="600">take #3 信息</text>
+  <g font-size="11.5" fill="#3a3a3c">
+    <text x="1056" y="116">后端　云 · 即梦</text>
+    <text x="1056" y="140">时长　5.0s · 24fps</text>
+    <text x="1056" y="164">花费　￥0.40</text>
+    <text x="1056" y="188">一致性　0.93（高）</text>
+    <text x="1056" y="212">美学　8.4 / 10</text>
+    <text x="1056" y="236">seed　912034</text>
+  </g>
+  <rect x="1056" y="256" width="192" height="1" fill="#eee"/>
+  <text x="1056" y="284" font-size="11.5" fill="#6a6a70" font-weight="600">Agent 备注</text>
+  <text x="1056" y="308" font-size="11" fill="#3a3a3c">推轨稳定、面部一致性最佳；</text>
+  <text x="1056" y="326" font-size="11" fill="#3a3a3c">#5 因换脸漂移已自动剔除。</text>
+  <rect x="1056" y="744" width="192" height="34" rx="10" fill="#0a84ff"/><text x="1152" y="766" font-size="12.5" fill="#fff" text-anchor="middle" font-weight="600">基于 #3 微调再跑</text>
+</svg>
